@@ -1,0 +1,243 @@
+/* ==========================================================================
+   VARIABLES Y CONFIGURACIÓN GLOBAL
+   ========================================================================== */
+:root {
+    --primary-color: #f39c12;
+    --secondary-color: #2ecc71;
+    --dark-bg: #1a252f;
+    --text-main: #2c3e50;
+    --glass-effect: rgba(255, 255, 255, 0.95);
+    --header-height: 75px;
+}
+
+/* ==========================================================================
+   HEADER Y NAVBAR CONTAINER
+   ========================================================================== */
+.main-header {
+    font-family: 'Inter', sans-serif;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--header-height);
+    background-color: var(--glass-effect);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 40px;
+}
+
+/* IZQUIERDA: Botón Hamburguesa */
+.nav-left {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.hamburger-btn {
+    background: #f8f9fa;
+    border: none;
+    cursor: pointer;
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    transition: 0.3s;
+}
+
+.hamburger-btn:hover {
+    background: #e9ecef;
+}
+
+.hamburger-btn .line {
+    width: 22px;
+    height: 2px;
+    background-color: var(--text-main);
+    border-radius: 2px;
+    transition: 0.3s;
+}
+
+/* CENTRO: Logo */
+.nav-center {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+}
+
+.brand-logo {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--text-main);
+    text-decoration: none;
+    letter-spacing: -1px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.brand-logo i {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+}
+
+.brand-logo span {
+    color: var(--primary-color);
+}
+
+/* DERECHA: Buscador y Login (CORREGIDO HORIZONTAL) */
+.nav-right {
+    flex: 1;
+    display: flex;
+    flex-direction: row; /* Fuerza alineación horizontal */
+    justify-content: flex-end;
+    align-items: center;
+    gap: 15px; /* Espacio entre buscador y botón */
+    flex-shrink: 0;
+}
+
+.search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.search-input {
+    border: 1px solid #e0e0e0;
+    background: #f4f7f6;
+    padding: 10px 15px 10px 40px;
+    border-radius: 12px;
+    width: 160px;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.search-input:focus {
+    width: 200px;
+    background: #fff;
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+.search-icon {
+    position: absolute;
+    left: 15px;
+    color: #95a5a6;
+    pointer-events: none;
+}
+
+.btn-login {
+    background: linear-gradient(135deg, var(--secondary-color), #27ae60);
+    color: white !important;
+    padding: 10px 20px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap; /* Evita que el texto se rompa en 2 líneas */
+    transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+}
+
+.btn-login:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(46, 204, 113, 0.4);
+}
+
+/* ==========================================================================
+   MENÚ LATERAL (DRAWER)
+   ========================================================================== */
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: -320px;
+    width: 300px;
+    height: 100vh;
+    background: white;
+    z-index: 1100;
+    transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 10px 0 30px rgba(0,0,0,0.1);
+}
+
+.side-menu.active {
+    left: 0;
+}
+
+.side-menu-header {
+    padding: 30px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #eee;
+}
+
+.side-menu-links {
+    list-style: none;
+    padding: 20px 0;
+    margin: 0;
+}
+
+.side-menu-links li a {
+    padding: 15px 30px;
+    color: var(--text-main);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+.side-menu-links li a i {
+    width: 20px;
+    color: var(--primary-color);
+}
+
+.side-menu-links li a:hover {
+    background: rgba(243, 156, 18, 0.05);
+    color: var(--primary-color);
+    padding-left: 40px;
+}
+
+.menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(26, 37, 47, 0.4);
+    backdrop-filter: blur(4px);
+    display: none;
+    z-index: 1050;
+}
+
+.menu-overlay.active {
+    display: block;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 900px) {
+    .search-input { width: 120px; }
+    .search-input:focus { width: 150px; }
+}
+
+@media (max-width: 768px) {
+    .search-box { display: none; } /* Oculta búsqueda en móviles */
+    .navbar-container { padding: 0 20px; }
+}

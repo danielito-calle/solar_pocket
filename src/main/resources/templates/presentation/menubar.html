@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="header-scripts">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" th:href="@{/presentation/menubar.css}">
+    <script th:src="@{/presentation/menubar.js}" defer></script>
+</head>
+<body>
+
+<header th:fragment="navbar" class="main-header">
+    <nav class="navbar-container">
+        <div class="nav-left">
+            <button class="hamburger-btn" id="toggleMenu" aria-label="Abrir menú">
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+            </button>
+        </div>
+
+        <div class="nav-center">
+            <a href="/" class="brand-logo">
+                <i class="fas fa-solar-panel"></i> SOLAR<span>POCKET</span>
+            </a>
+        </div>
+
+        <div class="nav-right">
+            <div class="search-box">
+                <input type="text" placeholder="Buscar..." class="search-input">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+            <a href="/login" class="btn-login">
+                <i class="fas fa-user-circle"></i> Iniciar Sesión
+            </a>
+        </div>
+    </nav>
+
+    <aside class="side-menu" id="sideMenu">
+        <div class="side-menu-header">
+            <h3>Menú Principal</h3>
+        </div>
+        <ul class="side-menu-links">
+            <li><a href="/"><i class="fas fa-home"></i> Inicio</a></li>
+            <li><a href="#problem"><i class="fas fa-chart-line"></i> Métricas</a></li>
+            <li><a href="#product"><i class="fas fa-poll-h"></i> Encuestas</a></li>
+            <li><a href="/contacto"><i class="fas fa-envelope"></i> Contacto</a></li>
+        </ul>
+
+    </aside>
+    <div class="menu-overlay" id="menuOverlay"></div>
+</header>
+
+</body>
+</html>

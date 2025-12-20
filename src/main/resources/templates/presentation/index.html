@@ -6,10 +6,12 @@
     <title>SOLAR POCKET</title>
 
     <link rel="stylesheet" th:href="@{/presentation/index.css}">
+    <th:block th:replace="~{presentation/menubar :: header-scripts}"></th:block>
 </head>
 
 
 <body>
+<div th:replace="~{presentation/menubar :: navbar}"></div>
 
 <section class="hero section">
     <div class="container hero-grid fade-up">
