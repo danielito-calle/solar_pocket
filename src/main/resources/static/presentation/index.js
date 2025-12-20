@@ -16,13 +16,20 @@ elements.forEach(el => observer.observe(el));
 
 document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById("surveyModal");
-    const btn = document.getElementById("openSurveyModal");
+    // Seleccionamos ambos botones por su ID
+    const btnHero = document.getElementById("openSurveyModal");
+    const btnBottom = document.getElementById("openSurveyModalBottom");
+
     const span = document.getElementsByClassName("close-modal")[0];
 
-    // Abrir modal
-    btn.onclick = function() {
+    // Función reutilizable para abrir
+    const openModal = function() {
         modal.style.display = "block";
     }
+
+    // Asignar el evento a ambos botones
+    if(btnHero) btnHero.onclick = openModal;
+    if(btnBottom) btnBottom.onclick = openModal;
 
     // Cerrar modal al dar click en (x)
     span.onclick = function() {
