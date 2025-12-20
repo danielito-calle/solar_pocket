@@ -9,8 +9,8 @@ import com.app.web.marketing.domain.Submission;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDateTime;
@@ -25,8 +25,13 @@ public class SurveyController {
     @Autowired
     private IFormService formService;
 
+    @GetMapping("/survey/metrics")
+    public String showSurveyToDiscount() {
+        return "presentation/survey";
+    }
+
     @PostMapping("/survey")
-    public String saveSurvey(
+    public String saveMainSurvey(
             @RequestParam("formId") Long formId,
             @RequestParam Map<String, String> allParams,
             RedirectAttributes redirectAttributes) {
