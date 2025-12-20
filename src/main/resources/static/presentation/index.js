@@ -14,6 +14,7 @@ const observer = new IntersectionObserver(entries => {
 elements.forEach(el => observer.observe(el));
 
 
+
 document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById("surveyModal");
     // Seleccionamos ambos botones por su ID

@@ -1,13 +1,15 @@
-# Maven
-/target/
+# Directorios de compilación
+target/
+bin/
+out/
 
-# IntelliJ IDEA
-/.idea/
+# Configuración de IntelliJ
+.idea/
 *.iml
+*.iws
+*.ipr
 
-# Logs
+# Archivos del Sistema y Logs
 *.log
-
-# OS
 .DS_Store
 Thumbs.db
