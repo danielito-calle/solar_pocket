@@ -5,15 +5,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const inputs = form.querySelectorAll('input, select, textarea');
 
     const updateProgress = () => {
-        // Definimos las preguntas clave para medir el progreso (una por sección)
         const checkPoints = [
-            'Zona',                   // Sección 1
-            'Grupo',                  // Sección 1
-            'Acceso Electricidad',    // Sección 1
-            'Frecuencia Dificultad',  // Sección 2
-            'Facilidad',              // Sección 3
-            'Utilidad',               // Sección 4
-            'Interes_General'         // Sección 7
+            '¿En qué tipo de zona vive actualmente?',
+            '¿A qué comunidad o grupo pertenece?',
+            '¿Tu acceso a la electricidad es constante?',
+            'Frecuencia de desconexión por falta de carga:',
+            '¿Qué características impulsan tu interés?',
+            'Tu percepción sobre el funcionamiento:',
         ];
 
         const total = checkPoints.length;
@@ -34,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
             progressBar.style.width = `${percentage}%`;
             // Cambia a verde cuando está completo
             progressBar.style.backgroundColor = percentage === 100 ? '#2ecc71' : '#f39c12';
+            document.getElementById('progressText').innerText = `${percentage}%`;
         }
     };
 

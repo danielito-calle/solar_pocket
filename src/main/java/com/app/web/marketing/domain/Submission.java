@@ -23,6 +23,8 @@ public class Submission {
 
     private LocalDateTime createdAt = LocalDateTime.now();
 
+    private String submitter;
+
     @ManyToOne
     @JoinColumn(name = "form_id")
     private Form form;
@@ -62,4 +64,13 @@ public class Submission {
     public void setForm(Form form) {
         this.form = form;
     }
+
+    public String getSubmitter() {
+        return submitter;
+    }
+
+    public void setSubmitter(String submitter) {
+        this.submitter = submitter;
+    }
+
 }

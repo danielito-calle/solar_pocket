@@ -2,128 +2,159 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Encuesta MVP | SOLAR POCKET</title>
+    <title>Experiencia MVP | SOLAR POCKET</title>
     <th:block th:replace="~{presentation/menubar :: header-scripts}"></th:block>
     <link rel="stylesheet" th:href="@{/presentation/menubar.css}">
     <link rel="stylesheet" th:href="@{/presentation/survey.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body class="survey-page-body">
 <div th:replace="~{presentation/menubar :: navbar}"></div>
 
 <main class="survey-wrapper">
-    <div class="survey-card">
-        <header class="survey-header" style="text-align: center;">
-            <h1 style="color: #f39c12; margin-bottom: 10px;">MVP – SOLAR POCKET</h1>
-            <p style="color: #666; margin-bottom: 40px;">Formulario de prueba con clientes. ¡Ayúdanos a mejorar!</p>
+    <div class="survey-card fade-up show">
+        <header class="survey-header">
+            <div class="header-icon">
+                <i class="fas fa-leaf"></i>
+            </div>
+            <h1>SOLAR POCKET <span class="badge">MVP 2024</span></h1>
+            <p>Tu energía, tu impacto. Ayúdanos a perfeccionar la carga del futuro y desbloquea beneficios exclusivos.</p>
+
+            <div class="progress-container">
+                <div class="progress-info">
+                    <span>Progreso de tu impacto</span>
+                    <span id="progressText">0%</span>
+                </div>
+                <div class="progress-track">
+                    <div id="progressBar"></div>
+                </div>
+            </div>
         </header>
 
-        <div style="width: 100%; background: #eee; height: 8px; border-radius: 4px; margin-bottom: 30px; overflow: hidden;">
-            <div id="progressBar" style="width: 0%; height: 100%; background: #f39c12; transition: 0.4s ease-out;"></div>
-        </div>
-
-        <form th:action="@{/survey}" method="post">
+        <form th:action="@{/survey}" method="post" id="surveyForm">
             <input type="hidden" name="formId" th:value="${2}">
 
-            <h2 class="section-title"><i class="fas fa-info-circle"></i> 1. Datos generales</h2>
+            <div class="form-section identification-bg">
+                <h2 class="section-title"><i class="fas fa-user-circle"></i> Datos de contacto</h2>
+                <p class="section-subtitle">Necesitamos estos datos para enviarte tu cupón de descuento.</p>
 
-            <div class="input-group">
-                <label>¿En qué tipo de zona vive?</label>
-                <div class="radio-grid">
-                    <label class="custom-option"><input type="radio" name="Zona" value="Rural" required> <span>Rural</span></label>
-                    <label class="custom-option"><input type="radio" name="Zona" value="Periurbana"> <span>Periurbana</span></label>
-                    <label class="custom-option"><input type="radio" name="Zona" value="Urbana"> <span>Urbana</span></label>
+                <div class="identification-grid">
+                    <div class="field-container">
+                        <label class="field-label">Nombre completo</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-user"></i>
+                            <input type="text" name="Nombre completo" class="styled-input" placeholder="Ej. Juan Pérez" required>
+                        </div>
+                    </div>
+
+                    <div class="field-container">
+                        <label class="field-label">Correo electrónico</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" name="Correo Electrónico" class="styled-input" placeholder="correo@ejemplo.com" required>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="input-group">
-                <label>¿A qué grupo pertenece principalmente?</label>
-                <div class="radio-grid">
-                    <label class="custom-option"><input type="radio" name="Grupo" value="Estudiante" required> <span>Estudiante</span></label>
-                    <label class="custom-option"><input type="radio" name="Grupo" value="Microemprendedor"> <span>Microemprendedor</span></label>
-                    <label class="custom-option"><input type="radio" name="Grupo" value="Jefe de familia"> <span>Jefe/a de familia</span></label>
+            <div class="form-section">
+                <h2 class="section-title"><i class="fas fa-map-marked-alt"></i> 1. Contexto y Entorno</h2>
+
+                <div class="question-box">
+                    <label>¿En qué tipo de zona vive actualmente?</label>
+                    <div class="radio-grid">
+                        <label class="custom-option">
+                            <input type="radio" name="¿En qué tipo de zona vive actualmente?" value="Rural" required>
+                            <i class="fas fa-mountain"></i>
+                            <span>Rural</span>
+                        </label>
+                        <label class="custom-option">
+                            <input type="radio" name="¿En qué tipo de zona vive actualmente?" value="Periurbana">
+                            <i class="fas fa-home"></i>
+                            <span>Periurbana</span>
+                        </label>
+                        <label class="custom-option">
+                            <input type="radio" name="¿En qué tipo de zona vive actualmente?" value="Urbana">
+                            <i class="fas fa-city"></i>
+                            <span>Urbana</span>
+                        </label>
+                    </div>
                 </div>
-                <input type="text" class="styled-textarea" style="margin-top: 15px;" name="Grupo_Otro" placeholder="Si es otro, especifique aquí...">
-            </div>
 
-            <div class="input-group">
-                <label>¿Cuenta con acceso constante a electricidad?</label>
-                <div class="radio-grid">
-                    <label class="custom-option"><input type="radio" name="Acceso Electricidad" value="Sí" required> <span>Sí</span></label>
-                    <label class="custom-option"><input type="radio" name="Acceso Electricidad" value="No"> <span>No</span></label>
-                    <label class="custom-option"><input type="radio" name="Acceso Electricidad" value="Solo algunas horas"> <span>Solo algunas horas</span></label>
-                </div>
-            </div>
-
-            <h2 class="section-title"><i class="fas fa-exclamation-triangle"></i> 2. Validación del problema</h2>
-
-            <div class="input-group">
-                <label>¿Con qué frecuencia tiene dificultades para cargar sus dispositivos?</label>
-                <div class="radio-grid">
-                    <label class="custom-option"><input type="radio" name="Frecuencia Dificultad" value="Diario" required> <span>Todos los días</span></label>
-                    <label class="custom-option"><input type="radio" name="Frecuencia Dificultad" value="Semanal"> <span>Varias veces/semana</span></label>
-                    <label class="custom-option"><input type="radio" name="Frecuencia Dificultad" value="Ocasionalmente"> <span>Ocasionalmente</span></label>
-                    <label class="custom-option"><input type="radio" name="Frecuencia Dificultad" value="Nunca"> <span>Nunca</span></label>
-                </div>
-            </div>
-
-            <div class="input-group">
-                <label>¿Cómo le afecta no poder cargar su celular?</label>
-                <div class="radio-grid">
-                    <label class="custom-option"><input type="radio" name="Afectación" value="Comunicación"> <span>Comunicación</span></label>
-                    <label class="custom-option"><input type="radio" name="Afectación" value="Estudio"> <span>Estudio</span></label>
-                    <label class="custom-option"><input type="radio" name="Afectación" value="Trabajo"> <span>Trabajo / Ventas</span></label>
-                    <label class="custom-option"><input type="radio" name="Afectación" value="Todos"> <span>Todos los anteriores</span></label>
+                <div class="question-box">
+                    <label>¿A qué comunidad o grupo pertenece?</label>
+                    <div class="radio-grid">
+                        <label class="custom-option"><input type="radio" name="¿A qué comunidad o grupo pertenece?" value="Estudiante" required><span>Estudiante</span></label>
+                        <label class="custom-option"><input type="radio" name="¿A qué comunidad o grupo pertenece?" value="Microemprendedor"><span>Emprendedor</span></label>
+                        <label class="custom-option"><input type="radio" name="¿A qué comunidad o grupo pertenece?" value="Jefe de familia"><span>Jefe de Familia</span></label>
+                    </div>
+                    <div class="input-wrapper">
+                        <i class="fas fa-pen-nib"></i>
+                        <input type="text" class="styled-input" name="¿A qué comunidad o grupo pertenece?" placeholder="Otro grupo específico...">
+                    </div>
                 </div>
             </div>
 
-            <h2 class="section-title"><i class="fas fa-solar-panel"></i> 3. Prueba del MVP – SOLAR POCKET</h2>
+            <div class="form-section accent-bg">
+                <h2 class="section-title"><i class="fas fa-bolt"></i> 2. Energía y Desafíos</h2>
 
-            <div class="input-group">
-                <label>¿Qué tan fácil le resultó entender su funcionamiento?</label>
-                <div class="radio-grid">
-                    <label class="custom-option"><input type="radio" name="Facilidad" value="Muy fácil"> <span>Muy fácil</span></label>
-                    <label class="custom-option"><input type="radio" name="Facilidad" value="Fácil"> <span>Fácil</span></label>
-                    <label class="custom-option"><input type="radio" name="Facilidad" value="Regular"> <span>Regular</span></label>
-                    <label class="custom-option"><input type="radio" name="Facilidad" value="Difícil"> <span>Difícil</span></label>
+                <div class="question-box">
+                    <label>¿Tu acceso a la electricidad es constante?</label>
+                    <div class="radio-grid">
+                        <label class="custom-option"><input type="radio" name="¿Tu acceso a la electricidad es constante?" value="Sí" required><span>Total</span></label>
+                        <label class="custom-option"><input type="radio" name="¿Tu acceso a la electricidad es constante?" value="No"><span>Nulo</span></label>
+                        <label class="custom-option"><input type="radio" name="¿Tu acceso a la electricidad es constante?" value="Solo algunas horas"><span>Intermitente</span></label>
+                    </div>
+                </div>
+
+                <div class="question-box">
+                    <label>Frecuencia de desconexión por falta de carga:</label>
+                    <div class="radio-grid">
+                        <label class="custom-option"><input type="radio" name="Frecuencia de desconexión por falta de carga:" value="Diario" required><span>Diario</span></label>
+                        <label class="custom-option"><input type="radio" name="Frecuencia de desconexión por falta de carga:" value="Semanal"><span>Semanal</span></label>
+                        <label class="custom-option"><input type="radio" name="Frecuencia de desconexión por falta de carga:" value="Ocasionalmente"><span>A veces</span></label>
+                    </div>
                 </div>
             </div>
 
-            <div class="input-group">
-                <label>¿Qué características le parecieron más útiles? (Multiselección)</label>
-                <div class="radio-grid">
-                    <label class="custom-option"><input type="checkbox" name="Mejor_Caracteristica" value="Carga Solar"> <span>Carga solar</span></label>
-                    <label class="custom-option"><input type="checkbox" name="Mejor_Caracteristica" value="Portabilidad"> <span>Portabilidad</span></label>
-                    <label class="custom-option"><input type="checkbox" name="Mejor_Caracteristica" value="Material Reciclado"> <span>Materiales reciclados</span></label>
-                    <label class="custom-option"><input type="checkbox" name="Mejor_Caracteristica" value="App"> <span>Aplicación móvil</span></label>
+            <div class="form-section">
+                <h2 class="section-title"><i class="fas fa-solar-panel"></i> 3. Experiencia Solar Pocket</h2>
+
+                <div class="question-box">
+                    <label>¿Qué características impulsan tu interés? <small>(Selecciona varias)</small></label>
+                    <div class="radio-grid">
+                        <label class="custom-option checkbox-style">
+                            <input type="checkbox" name="¿Qué características impulsan tu interés?" value="Carga Solar">
+                            <div class="check-content"><i class="fas fa-sun"></i><span>Carga Solar</span></div>
+                        </label>
+                        <label class="custom-option checkbox-style">
+                            <input type="checkbox" name="¿Qué características impulsan tu interés?" value="Portabilidad">
+                            <div class="check-content"><i class="fas fa-mobile-alt"></i><span>Portabilidad</span></div>
+                        </label>
+                        <label class="custom-option checkbox-style">
+                            <input type="checkbox" name="¿Qué características impulsan tu interés?" value="Material Reciclado">
+                            <div class="check-content"><i class="fas fa-recycle"></i><span>Eco Material</span></div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="question-box">
+                    <label>Tu percepción sobre el funcionamiento:</label>
+                    <div class="radio-grid mini">
+                        <label class="custom-option"><input type="radio" name="Tu percepción sobre el funcionamiento:" value="Muy fácil"><span>Excelente</span></label>
+                        <label class="custom-option"><input type="radio" name="Tu percepción sobre el funcionamiento:" value="Fácil"><span>Bueno</span></label>
+                        <label class="custom-option"><input type="radio" name="Tu percepción sobre el funcionamiento:" value="Regular"><span>Regular</span></label>
+                    </div>
                 </div>
             </div>
 
-            <h2 class="section-title"><i class="fas fa-comment-dots"></i> 6. Retroalimentación abierta</h2>
-
-            <div class="input-group">
-                <label>¿Qué es lo que más le gustó del producto?</label>
-                <textarea class="styled-textarea" name="Lo_que_mas_gusto" rows="3" placeholder="Tu opinión..."></textarea>
+            <div class="submit-container">
+                <button type="submit" class="btn-primary-solar">
+                    <span>FINALIZAR Y OBTENER RECOMPENSA</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+                <p class="secure-text"><i class="fas fa-shield-alt"></i> Tus datos están protegidos por Solar Pocket</p>
             </div>
-
-            <div class="input-group">
-                <label>¿Qué mejoraría o cambiaría?</label>
-                <textarea class="styled-textarea" name="Mejoras" rows="3" placeholder="Sugerencias..."></textarea>
-            </div>
-
-            <h2 class="section-title"><i class="fas fa-star"></i> 7. Nivel de aceptación</h2>
-
-            <div class="input-group">
-                <label>En general, su interés en SOLAR POCKET es:</label>
-                <div class="radio-grid">
-                    <label class="custom-option"><input type="radio" name="Interes_General" value="Alto" required> <span>Alto</span></label>
-                    <label class="custom-option"><input type="radio" name="Interes_General" value="Medio"> <span>Medio</span></label>
-                    <label class="custom-option"><input type="radio" name="Interes_General" value="Bajo"> <span>Bajo</span></label>
-                </div>
-            </div>
-
-            <button type="submit" class="btn-primary-solar">
-                ENVIAR ENCUESTA Y OBTENER DESCUENTO <i class="fas fa-gift" style="margin-left: 10px;"></i>
-            </button>
         </form>
     </div>
 </main>

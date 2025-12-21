@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ISubmissionRepository extends JpaRepository<Submission,Long> {
+    boolean existsBySubmitterAndFormId(String email, Long formId);
 }
