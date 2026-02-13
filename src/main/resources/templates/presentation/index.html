@@ -48,7 +48,7 @@
     <div class="container problem-grid fade-up">
         <div>
             <h2>El problema que viven millones de personas</h2>
-            <p>
+            <p class="section-subtitle">
                 La falta de electricidad constante impide la comunicación,
                 el estudio y el trabajo en muchas comunidades.
             </p>
@@ -74,9 +74,13 @@
             </div>
         </div>
 
-        <div class="problem-image">
-            <img src="https://picsum.photos/600/320?random=2"
-                 alt="Zona rural sin acceso a electricidad">
+        <div class="problem-video-container">
+            <video autoplay muted loop playsinline id="problemVideo" class="problem-video">
+                <source th:src="@{/presentation/images/solarpocket_video.mp4}" type="video/mp4">
+            </video>
+            <button id="toggleAudio" class="video-control-btn">
+                <span id="audioIcon">🔇</span>
+            </button>
         </div>
     </div>
 </section>
@@ -84,13 +88,31 @@
 <section class="product section fade-up">
     <div class="container">
         <h2>SOLAR POCKET en acción</h2>
-        <div class="product-image">
-            <img src="https://picsum.photos/700/380?random=3"
-                 alt="Mockup del cargador solar SOLAR POCKET">
+
+        <div class="carousel-container">
+            <div class="carousel-track">
+                <div class="carousel-slide">
+                    <img th:src="@{/presentation/images/solarpocket1.jpeg}" alt="Solar Pocket 1">
+                </div>
+                <div class="carousel-slide">
+                    <img th:src="@{/presentation/images/solarpcoket2.jpeg}" alt="Solar Pocket 2">
+                </div>
+                <div class="carousel-slide">
+                    <img th:src="@{/presentation/images/solarpocket3.jpeg}" alt="Solar Pocket 3">
+                </div>
+                <div class="carousel-slide">
+                    <img th:src="@{/presentation/images/solarpocket4.jpeg}" alt="Solar Pocket 4">
+                </div>
+            </div>
+            <div class="carousel-dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
         </div>
     </div>
 </section>
-
 
 <section class="final-cta fade-up">
     <div class="container">

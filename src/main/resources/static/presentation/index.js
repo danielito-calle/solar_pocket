@@ -63,3 +63,46 @@ document.querySelectorAll('.survey-form').forEach(form => {
         });
     });
 });
+
+
+// Lógica del Carrusel Solar Pocket
+const track = document.querySelector('.carousel-track');
+const dots = document.querySelectorAll('.dot');
+let currentIndex = 0;
+
+function updateCarousel(index) {
+    // Mover el track
+    track.style.transform = `translateX(-${index * 100}%)`;
+
+    // Actualizar puntos
+    dots.forEach(dot => dot.classList.remove('active'));
+    dots[index].classList.add('active');
+
+    currentIndex = index;
+}
+
+// Click en los puntos
+dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => updateCarousel(index));
+});
+
+// Opcional: Auto-play cada 5 segundos
+setInterval(() => {
+    let nextIndex = (currentIndex + 1) % dots.length;
+    updateCarousel(nextIndex);
+}, 5000);
+
+
+const video = document.getElementById('problemVideo');
+const btn = document.getElementById('toggleAudio');
+const icon = document.getElementById('audioIcon');
+
+btn.addEventListener('click', () => {
+    if (video.muted) {
+        video.muted = false;
+        icon.innerText = '🔊';
+    } else {
+        video.muted = true;
+        icon.innerText = '🔇';
+    }
+});
