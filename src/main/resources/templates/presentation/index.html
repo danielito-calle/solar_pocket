@@ -9,13 +9,12 @@
     <th:block th:replace="~{presentation/menubar :: header-scripts}"></th:block>
 </head>
 
-
 <body>
 <div th:replace="~{presentation/menubar :: navbar}"></div>
 
 <section class="hero section">
     <div class="container hero-grid fade-up">
-        <div>
+        <div class="hero-content">
             <h1>Energía solar portátil para cargar tu celular donde no llega la electricidad</h1>
             <p>
                 SOLAR POCKET es un cargador solar ecológico, portátil y accesible,
@@ -26,7 +25,6 @@
                 <button class="btn btn-primary" id="openSurveyModal" data-event="join_click">
                     Únete
                 </button>
-
 
                 <a th:href="@{/survey/metrics}"
                    class="btn btn-secondary"
@@ -77,6 +75,7 @@
             <video autoplay muted loop playsinline id="problemVideo" class="problem-video">
                 <source th:src="@{/presentation/images/solarpocket_video.mp4}" type="video/mp4">
             </video>
+            <div class="video-overlay"></div>
             <button id="toggleAudio" class="video-control-btn">
                 <span id="audioIcon">🔇</span>
             </button>
@@ -84,9 +83,62 @@
     </div>
 </section>
 
-<section class="product section fade-up">
+<section class="catalog section fade-up">
     <div class="container">
+        <div class="section-header text-center">
+            <h2>Nuestros Modelos</h2>
+            <p class="section-subtitle">Elige el SOLAR POCKET que mejor se adapte a tus necesidades de energía.</p>
+        </div>
+
+        <div class="catalog-grid">
+            <div class="catalog-card">
+                <div class="catalog-image">
+                    <img th:src="@{/presentation/images/solarpocket1.jpeg}" alt="Solar Pocket Lite">
+                </div>
+                <div class="catalog-info">
+                    <h3>Solar Pocket Lite</h3>
+                    <p>Ideal para emergencias y uso básico diario.</p>
+                    <button class="btn btn-outline">Ver detalles</button>
+                </div>
+            </div>
+            <div class="catalog-card">
+                <div class="catalog-image">
+                    <img th:src="@{/presentation/images/solarpcoket2.jpeg}" alt="Solar Pocket Standard">
+                </div>
+                <div class="catalog-info">
+                    <h3>Solar Pocket Standard</h3>
+                    <p>Carga rápida para tu smartphone en cualquier lugar.</p>
+                    <button class="btn btn-outline">Ver detalles</button>
+                </div>
+            </div>
+            <div class="catalog-card">
+                <div class="catalog-image">
+                    <img th:src="@{/presentation/images/solarpocket3.jpeg}" alt="Solar Pocket Pro">
+                </div>
+                <div class="catalog-info">
+                    <h3>Solar Pocket Pro</h3>
+                    <p>Doble puerto USB y mayor capacidad de almacenamiento.</p>
+                    <button class="btn btn-outline">Ver detalles</button>
+                </div>
+            </div>
+            <div class="catalog-card">
+                <div class="catalog-image">
+                    <img th:src="@{/presentation/images/solarpocket4.jpeg}" alt="Solar Pocket Ultra">
+                </div>
+                <div class="catalog-info">
+                    <h3>Solar Pocket Ultra</h3>
+                    <p>Máxima potencia, linterna integrada y resistencia al agua.</p>
+                    <button class="btn btn-outline">Ver detalles</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="product section fade-up">
+    <div class="container text-center">
         <h2>SOLAR POCKET en acción</h2>
+        <p class="section-subtitle">Diseño compacto y eficiente para tu día a día.</p>
 
         <div class="carousel-container">
             <div class="carousel-track">
@@ -113,6 +165,34 @@
     </div>
 </section>
 
+<section class="demos section fade-up">
+    <div class="container">
+        <div class="section-header text-center">
+            <h2>Descubre cómo funciona</h2>
+            <p class="section-subtitle">Instalación y uso en menos de 1 minuto.</p>
+        </div>
+
+        <div class="demo-grid">
+            <div class="demo-video-card">
+                <video autoplay muted loop playsinline class="demo-video">
+                    <source th:src="@{/presentation/videos/demo1.mp4}" type="video/mp4">
+                </video>
+                <div class="demo-info">
+                    <h4>Despliegue fácil</h4>
+                </div>
+            </div>
+            <div class="demo-video-card">
+                <video autoplay muted loop playsinline class="demo-video">
+                    <source th:src="@{/presentation/videos/demo2.mp4}" type="video/mp4">
+                </video>
+                <div class="demo-info">
+                    <h4>Carga al instante</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <section class="final-cta fade-up">
     <div class="container">
         <h2>¿Listo para ser parte del cambio?</h2>
@@ -128,8 +208,7 @@
         <span class="close-modal">&times;</span>
         <div class="modal-header">
             <h2>¡Únete!</h2>
-            <p>Estamos buscando <strong>"Early Adopters"</strong> (Primeros Usuarios) para validar nuestro prototipo.
-            </p>
+            <p>Estamos buscando <strong>"Early Adopters"</strong> (Primeros Usuarios) para validar nuestro prototipo.</p>
         </div>
 
         <form th:action="@{/survey}" method="post" class="survey-form">
@@ -167,10 +246,8 @@
             <div class="form-group">
                 <label>¿Vives en una zona con cortes de luz frecuentes?</label>
                 <div class="radio-group">
-                    <label><input type="radio" name="¿Vives en una zona con cortes de luz frecuentes?" value="Si"
-                                  required> Sí</label>
-                    <label><input type="radio" name="¿Vives en una zona con cortes de luz frecuentes?" value="No">
-                        No</label>
+                    <label><input type="radio" name="¿Vives en una zona con cortes de luz frecuentes?" value="Si" required> Sí</label>
+                    <label><input type="radio" name="¿Vives en una zona con cortes de luz frecuentes?" value="No"> No</label>
                 </div>
             </div>
 
@@ -182,7 +259,9 @@
 </div>
 
 <footer>
-    © 2025 SOLAR POCKET – Energía limpia para todos
+    <div class="container">
+        © 2026 SOLAR POCKET – Energía limpia para todos
+    </div>
 </footer>
 
 <script th:src="@{/presentation/index.js}"></script>
